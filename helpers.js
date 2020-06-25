@@ -8,6 +8,16 @@ function hexagon(posX, posY, radius) {
   endShape(CLOSE);
 }
 
+function octogon(posX, posY, radius) {
+    rotAngle = 360 / 8;
+    beginShape();
+    for (let i = 0; i < 8; i++) {
+      const thisVertex = pointOnCircle(posX, posY, radius, i * rotAngle);
+      vertex(thisVertex.x, thisVertex.y);
+    }
+    endShape(CLOSE);
+}
+
 function pointOnCircle(posX, posY, radius, angle) {
   const x = posX + radius * cos(angle);
   const y = posY + radius * sin(angle);
@@ -62,7 +72,7 @@ function myTriangle(center, radius, direction) {
   }
 }
 
-function shuffle(array) {
+function jumble(array) {
   var currentIndex = array.length,
     temporaryValue,
     randomIndex;
@@ -86,22 +96,22 @@ const layerConstructors = [
   {
     name: "Outline Shape",
     init: () => new OutlineShape(),
-    weight: 0.3,
+    weight: 0.2,
   },
   {
     name: "Centered Shape",
     init: () => new CenteredShape(),
-    weight: 0.3,
+    weight: 0.4,
   },
   {
     name: "Circles",
     init: () => new Circles(),
-    weight: 0.3,
+    weight: 0.4,
   },
   {
     name: "Simple Lines",
     init: () => new SimpleLines(),
-    weight: 0.3,
+    weight: 0.35,
   },
   {
     name: "Dotted Lines",

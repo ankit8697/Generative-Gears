@@ -3,7 +3,7 @@ class Crystal {
         this.x = posX;
         this.y = posY;
         this.layers = []
-        shuffle(layerConstructors);
+        jumble(layerConstructors);
         layerConstructors.forEach((lcon) => {
           let picker = random(1);
           if (picker > lcon.weight) {
@@ -12,11 +12,11 @@ class Crystal {
         });
     }
 
-    render() {
-        push();
+    render(angle) {
+        push();        
         translate(this.x, this.y);
         this.layers.forEach((layer) => {
-          layer.render();
+          layer.render(angle);
         });
         pop();
     }

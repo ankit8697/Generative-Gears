@@ -1,6 +1,6 @@
 class Layer {
     constructor() {
-        this.sides = SIDES;
+        this.sides = 6;
         this.numShapes = this.sides;
         this.angle = 360 / this.numShapes;
         this.stepsOut = 8;
@@ -35,7 +35,7 @@ class Circles extends Layer {
 class SimpleLines extends Layer {
     constructor() {
         super();
-        this.numShapes = randomSelectTwo() ? SIDES : SIDES * 2;
+        this.numShapes = randomSelectTwo() ? this.sides : this.sides * 2;
         this.numSteps = randomSelectTwo() ? this.stepsOut : floor(this.stepsOut * 1.25);
         this.step = (CRYSTAL_SIZE / 2) / this.numSteps;
         this.start = floor(random(0, this.numSteps));
@@ -47,6 +47,8 @@ class SimpleLines extends Layer {
         noFill();
         stroke(this.layerColor);
         strokeWeight(this.weight);
+        console.log(this.rotation);
+        rotate(this.rotation);
         push();
         for (let i = 0; i < this.numShapes; i++) {
           line(this.start * this.step, 0, this.stop * this.step, 0);
@@ -60,6 +62,7 @@ class OutlineShape extends Layer {
     constructor() {
         super();
         this.hexagonTrue = randomSelectTwo();
+        this.shape = random(1);
     }
 
     render() {
@@ -67,10 +70,12 @@ class OutlineShape extends Layer {
         stroke(this.layerColor);
         strokeWeight(this.weight);
         push();
-        if (this.hexagonTrue) {
+        if (this.shape < 0.3) {
           hexagon(0, 0, CRYSTAL_SIZE / 2);
-        } else {
+        } else if (this.shape > 0.3 && this.shape < 0.6) {
           ellipse(0, 0, CRYSTAL_SIZE, CRYSTAL_SIZE);
+        } else {
+            octogon(0, 0, CRYSTAL_SIZE / 2);
         }
         pop();
     }
@@ -165,7 +170,7 @@ class RingOfShapes extends Layer {
 class SteppedHexagons extends Layer {
   constructor() {
     super();
-    this.numSteps = randomSelectTwo() ? this.stepsOut : this.stepsOut * 1.25;
+    this.numSteps = this.stepsOut;
     this.centerOffset = (CRYSTAL_SIZE / 2) * 0.15;
     this.singleStep = (CRYSTAL_SIZE / 2 - this.centerOffset) / this.numSteps;
     this.weight = randomSelectTwo() ? this.thinStroke : this.thickStroke;

@@ -4,7 +4,6 @@ const CRYSTAL_SIZE = 100;
 const PADDING = CRYSTAL_SIZE * 0.2;
 const GRIDBOX = CRYSTAL_SIZE + PADDING;
 const MARGIN = CRYSTAL_SIZE / 2;
-const SIDES = 6;
 const START = (CRYSTAL_SIZE / 2) + MARGIN
 const COLUMNS = width / GRIDBOX;
 const ROWS = height / GRIDBOX;
@@ -15,9 +14,15 @@ function setup() {
     const totalX = MARGIN + GRIDBOX * COLUMNS;
     const totalY = MARGIN + GRIDBOX * ROWS;
     createCanvas(totalX, totalY);
+
     PALETTE = [
-    color(255, 52, 154), 
-    color(4, 0, 152),];
+        color("#17BEBB"),
+        color("#2E282A"),
+        color("#FF6978"),
+    //   color(255, 52, 154), // pink
+    //   color(4, 0, 152), // blue
+    ];
+    
     noLoop();
     angleMode(DEGREES);
     rectMode(CENTER);
