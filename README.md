@@ -1,5 +1,4 @@
-# Project Title
-Generative Gears
+# Generative Gears
 
 ## Table of Contents
 
