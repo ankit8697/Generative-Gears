@@ -19,10 +19,11 @@ class Circles extends Layer {
         this.position = CRYSTAL_SIZE / 2 - this.shapeSize / 2;
     }
 
-    render() {
+    render(angle) {
         noFill();
         stroke(this.layerColor);
         strokeWeight(1);
+        rotate(angle);
         push();
         for (let i = 0; i < this.numShapes; i++) {
           ellipse(this.position, 0, this.shapeSize, this.shapeSize);
@@ -43,12 +44,11 @@ class SimpleLines extends Layer {
         this.angle = 360 / this.numShapes;
     }
 
-    render() {
+    render(angle) {
         noFill();
         stroke(this.layerColor);
         strokeWeight(this.weight);
-        console.log(this.rotation);
-        rotate(this.rotation);
+        rotate(angle);
         push();
         for (let i = 0; i < this.numShapes; i++) {
           line(this.start * this.step, 0, this.stop * this.step, 0);
@@ -65,10 +65,11 @@ class OutlineShape extends Layer {
         this.shape = random(1);
     }
 
-    render() {
+    render(angle) {
         noFill();
         stroke(this.layerColor);
         strokeWeight(this.weight);
+        rotate(angle);
         push();
         if (this.shape < 0.3) {
           hexagon(0, 0, CRYSTAL_SIZE / 2);
@@ -90,9 +91,10 @@ class DottedLines extends Layer {
         this.centerOffset = this.singleStep;
     }
 
-    render() {
+    render(angle) {
         fill(this.layerColor);
         noStroke();
+        rotate(angle);
         push();
         for (let i = 0; i < this.numShapes; i++) {
             for (let x = this.centerOffset; x < CRYSTAL_SIZE / 2; x += this.singleStep) {
@@ -112,9 +114,10 @@ class CenteredShape extends Layer {
       floor(random(this.stepsOut / 2, this.stepsOut - 2)) * this.singleStep;
   }
 
-  render() {
+  render(angle) {
     fill(this.layerColor);
     noStroke();
+    rotate(angle);
     push();
     if (this.randomShape < 0.1) {
       rect(0, 0, this.shapeSize * 2, this.shapeSize * 2);
@@ -148,10 +151,11 @@ class RingOfShapes extends Layer {
     }
   }
 
-  render() {
+  render(angle) {
     stroke(this.layerColor);
     fill(this.fillColor);
     strokeWeight(this.weight);
+    rotate(angle);
     push();
     for (let i = 0; i < this.numShapes; i++) {
       if (this.randomShape < 0.33) {
@@ -176,9 +180,10 @@ class SteppedHexagons extends Layer {
     this.weight = randomSelectTwo() ? this.thinStroke : this.thickStroke;
   }
 
-  render() {
+  render(angle) {
     stroke(this.layerColor);
     noFill();
+    rotate(angle);
     strokeWeight(this.weight);
     push();
     rotate(this.angle / 2);

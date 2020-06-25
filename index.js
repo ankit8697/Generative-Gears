@@ -7,8 +7,9 @@ const MARGIN = CRYSTAL_SIZE / 2;
 const START = (CRYSTAL_SIZE / 2) + MARGIN
 const COLUMNS = width / GRIDBOX;
 const ROWS = height / GRIDBOX;
-let PALETTE = []
-let ALL_CRYSTALS = []
+let PALETTE = [];
+let ALL_CRYSTALS = [];
+let angle = 0;
 
 function setup() {
     const totalX = MARGIN + GRIDBOX * COLUMNS;
@@ -22,23 +23,23 @@ function setup() {
     //   color(255, 52, 154), // pink
     //   color(4, 0, 152), // blue
     ];
-    
-    noLoop();
+    for (let x = 0; x < COLUMNS; x++) {
+      for (let y = 0; y < ROWS; y++) {
+        const posX = START + x * GRIDBOX;
+        const posY = START + y * GRIDBOX;
+        const crystal = new Crystal(posX, posY);
+        ALL_CRYSTALS.push(crystal);
+      }
+    }
+    // noLoop();
     angleMode(DEGREES);
     rectMode(CENTER);
 }
 
 function draw() {
-    for (let x = 0; x < COLUMNS; x++) {
-        for (let y = 0; y < ROWS; y++) {
-            const posX = START + x * GRIDBOX;
-            const posY = START + y * GRIDBOX;
-            const crystal = new Crystal(posX, posY);
-            ALL_CRYSTALS.push(crystal);
-        }
-    }
 
     ALL_CRYSTALS.forEach(crystal => {
-        crystal.render();
+        crystal.render(angle);
     })
+    angle += 1;
 }

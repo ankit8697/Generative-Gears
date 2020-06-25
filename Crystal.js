@@ -3,7 +3,7 @@ class Crystal {
         this.x = posX;
         this.y = posY;
         this.layers = []
-        jumble(layerConstructors);
+        // jumble(layerConstructors);
         layerConstructors.forEach((lcon) => {
           let picker = random(1);
           if (picker > lcon.weight) {

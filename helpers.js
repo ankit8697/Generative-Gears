@@ -94,6 +94,11 @@ function jumble(array) {
 
 const layerConstructors = [
   {
+    name: "Circles",
+    init: () => new Circles(),
+    weight: 0.2,
+  },
+  {
     name: "Outline Shape",
     init: () => new OutlineShape(),
     weight: 0.2,
@@ -101,11 +106,6 @@ const layerConstructors = [
   {
     name: "Centered Shape",
     init: () => new CenteredShape(),
-    weight: 0.4,
-  },
-  {
-    name: "Circles",
-    init: () => new Circles(),
     weight: 0.4,
   },
   {
